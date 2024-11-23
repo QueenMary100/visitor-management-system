@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,8 +20,8 @@ const LandingPage = () => {
       <header className={`flex items-center justify-between p-4 sticky top-0 z-10 transition-all duration-300 ${scrolled ? 'bg-gray-800 shadow-lg' : 'bg-transparent'}`}>
         <h1 className="text-4xl font-extrabold text-orange-500">SecurePass</h1>
         <nav className="hidden md:flex space-x-8">
-          <Link to="#home" className="hover:text-orange-500 transition duration-300">Home</Link>
-          <Link to="#about" className="hover:text-orange-500 transition duration-300">About Us</Link>
+          <Link to="#home" className="hover:text-orange-500 transition duration-300"><a href="#">Home</a></Link>
+          <Link to="#about" className="hover:text-orange-500 transition duration-300"><a href="#aboutus">AboutUs</a></Link>
           <Link to="#Service " className="hover:text-orange-500 transition duration-300">Service</Link>
         </nav>
         <Link to="Dashboard/" className="bg-orange-500 text-black px-5 py-2 rounded-full shadow-md hover:bg-white hover:text-black transition duration-300">
@@ -35,13 +33,13 @@ const LandingPage = () => {
       <section id="home" className="flex flex-col items-center justify-center h-screen text-center bg-black p-6">
         <h2 className="text-5xl md:text-6xl font-bold mb-6">Welcome to SecurePass</h2>
         <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl">Effortlessly secure and manage visitor access with cutting-edge technology designed for the modern world.</p>
-        <Link to="/Navbar" className="bg-orange-500 text-black px-5 py-2 rounded-full shadow-md hover:bg-white hover:text-black transition duration-300">
+        <Link to="/registration" className="bg-orange-500 text-black px-5 py-2 rounded-full shadow-md hover:bg-white hover:text-black transition duration-300">
           Register
-        </Link>
+        </Link>       
       </section>
 
       {/* About Us Section */}
-      <section id="about" className="py-20 bg-gray-900 text-center">
+      <section id="aboutus" className="py-20 bg-gray-900 text-center">
         <div className="container mx-auto px-6 max-w-4xl">
           <h2 className="text-4xl font-bold mb-4 text-orange-500">About SecurePass</h2>
           <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto">
