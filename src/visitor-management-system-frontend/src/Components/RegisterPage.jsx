@@ -1,5 +1,3 @@
-
-
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navrbar';
@@ -13,16 +11,29 @@ const RegistrationPage = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [visitLocation, setVisitLocation] = useState('');
   const [imageSrc, setImageSrc] = useState(null);
-  const [checkInMessage, setCheckInMessage] = useState('');
+  const [errors, setErrors] = useState({});
   const webcamRef = useRef(null);
   const navigate = useNavigate();
 
   const handleRegister = () => {
-    // Set the check-in message when registering
-    const checkInTime = new Date().toLocaleString();
-    setCheckInMessage(`Check-in successful! You checked in at ${checkInTime}`);
+    // Validate form inputs
+    const newErrors = {};
+    if (!fullName.trim()) newErrors.fullName = 'Full Name is required.';
+    if (!email.trim()) newErrors.email = 'Email is required.';
+    if (!idNumber.trim()) newErrors.idNumber = 'ID Number is required.';
+    if (!phoneNumber.trim()) newErrors.phoneNumber = 'Phone Number is required.';
+    if (!visitLocation.trim()) newErrors.visitLocation = 'Visit Location is required.';
+    if (!imageSrc) newErrors.imageSrc = 'Please capture an image.';
 
-    // Create user data object
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    // Clear errors and navigate with data
+    setErrors({});
+    const checkInTime = new Date().toLocaleString();
+
     const userData = {
       fullName,
       email,
@@ -33,7 +44,6 @@ const RegistrationPage = () => {
       imageSrc,
     };
 
-    // Navigate to the check-in confirmation page after registration
     navigate('/check-in', { state: { userData } });
   };
 
@@ -46,7 +56,7 @@ const RegistrationPage = () => {
     <div className="bg-black min-h-screen text-white">
       <Navbar />
       <div className="container mx-auto p-6">
-        <div className="bg-gray-800 p-8 rounded-lg s09874hadow-lg">
+        <div className="bg-gray-800 p-8 rounded-lg shadow-lg">
           <input
             type="text"
             placeholder="Full Name"
@@ -73,7 +83,7 @@ const RegistrationPage = () => {
             placeholder="Phone Number"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            className="mb-4 p-2 w-full border border-gray-600 round09874ed focus:outline-none focus:ring-2 focus:ring-orange-500"
+            className="mb-4 p-2 w-full border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
           />
           <input
             type="text"
@@ -83,24 +93,30 @@ const RegistrationPage = () => {
             className="mb-4 p-2 w-full border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
           />
 
-          {/* Webcam for live image capture */}
-          <Webcam
-            audio={false}
-            ref={webcamRef}
-            screenshotFormat="image/jpeg"
-            className="mb-4"
-          />
-          <button onClick={capture} className="bg-orange-500 text-white p-2 rounded hover:bg-orange-600 transition duration-300 w-full mb-4">
-            Capture Image
-          </button>
+            {/* Webcam for live image capture */}
+            <Webcam
+              audio={false}
+              ref={webcamRef}
+              screenshotFormat="image/jpeg"
+              className="mb-4"
+            />
+            <button
+              onClick={capture}
+              type="button"
+              className="bg-orange-500 text-white p-2 rounded hover:bg-orange-600 transition duration-300 w-full mb-4"
+            >
+              Capture Image
+            </button>
+            {errors.imageSrc && <p className="text-red-500 text-sm">{errors.imageSrc}</p>}
 
-          {imageSrc && (
-            <div className="mb-4">
-              <img src={imageSrc} alt="Captured" className="rounded mb-2" />
-            </div>
-          )}
+            {/* Display Captured Image */}
+            {imageSrc && (
+              <div className="mb-4">
+                <img src={imageSrc} alt="Captured" className="rounded mb-2" />
+              </div>
+            )}
 
-          {/* INFORMATION Section */}09874
+          {/* INFORMATION Section */}
           <div className="mt-6 bg-gray-700 p-4 rounded">
             <h2 className="text-lg font-bold mb-2">Your INFORMATION:</h2>
             <p><strong>Full Name:</strong> {fullName || 'N/A'}</p>

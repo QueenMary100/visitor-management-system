@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from './Navrbar';
@@ -15,7 +16,7 @@ const CheckInPage = () => {
         <div className="bg-gray-800 p-8 rounded-lg shadow-lg">
           <h2 className="text-xl mb-4">Welcome, {userData.fullName}!</h2>
           <p>Check-in Time: {userData.checkInTime}</p>
-          <p>Email: {userData.email}</p>
+          <p aria-required>Email: {userData.email}</p>
           <p>ID Number: {userData.idNumber}</p>
           <p>Phone Number: {userData.phoneNumber}</p>
           <p>Visit Location: {userData.visitLocation}</p>
@@ -27,3 +28,4 @@ const CheckInPage = () => {
 };
 
 export default CheckInPage;
+
