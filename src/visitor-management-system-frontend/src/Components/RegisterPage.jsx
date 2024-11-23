@@ -4,6 +4,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navrbar';
 import Webcam from 'react-webcam';
+ //import visitor_management_system_backend from '../../../declarations';
 
 const RegistrationPage = () => {
   const [fullName, setFullName] = useState('');
@@ -45,7 +46,7 @@ const RegistrationPage = () => {
     <div className="bg-black min-h-screen text-white">
       <Navbar />
       <div className="container mx-auto p-6">
-        <div className="bg-gray-800 p-8 rounded-lg shadow-lg">
+        <div className="bg-gray-800 p-8 rounded-lg s09874hadow-lg">
           <input
             type="text"
             placeholder="Full Name"
@@ -72,7 +73,7 @@ const RegistrationPage = () => {
             placeholder="Phone Number"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            className="mb-4 p-2 w-full border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
+            className="mb-4 p-2 w-full border border-gray-600 round09874ed focus:outline-none focus:ring-2 focus:ring-orange-500"
           />
           <input
             type="text"
@@ -99,7 +100,7 @@ const RegistrationPage = () => {
             </div>
           )}
 
-          {/* INFORMATION Section */}
+          {/* INFORMATION Section */}09874
           <div className="mt-6 bg-gray-700 p-4 rounded">
             <h2 className="text-lg font-bold mb-2">Your INFORMATION:</h2>
             <p><strong>Full Name:</strong> {fullName || 'N/A'}</p>
